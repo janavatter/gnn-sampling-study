@@ -11,6 +11,12 @@ All experiments were logged via [Weights & Biases (W&B)](https://wandb.ai/site).
 ### Reproducibility
 All experiments can be reproduced by using the parameters given by the [spreadsheet](https://docs.google.com/spreadsheets/d/1EQToIxNeqmFrgdvoOTpQ9AbOb7x85ddBbNRhZPYm-nE/edit?usp=sharing). In order to log the results, one needs a Weights & Biases account. When first using W&B, you`ll need to authorize your device.
 
+#### Preliminaries:
+- You have a W&B account.
+- You have installed all requirements given in `requirements.txt`.
+- CUDA is installed for the GPU experiments.
+
+##
 A sample command to run an experiment is:
 
 `python3 main.py --data ogbn-arxiv --epoch 20 --hidden 256 --sampler neighbor --layer 2 fanout 10 --wandb sampling-study-base-experiments-arxiv --batchsize 1024 --mode cpu`
