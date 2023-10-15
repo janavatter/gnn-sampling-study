@@ -22,7 +22,3 @@ A sample command to run an experiment is:
 `python3 main.py --data ogbn-arxiv --epoch 20 --hidden 256 --sampler neighbor --layer 2 fanout 10 --wandb sampling-study-base-experiments-arxiv --batchsize 1024 --mode cpu`
 
 This will automatically download the needed dataset (might take some time), convert it to a DGL (Deep Graph Library) graph and start the training process.
-
-
-##
-Please contact jana.vatter@tum.de for any questions regarding reproducibility.
