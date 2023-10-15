@@ -6,10 +6,10 @@ Currently in submission.
 Each experiment is named `sampling-study-` followed by the experiment type and dataset. The options for type are `base` for the sampler-specific experiments, `layers` for the experiments where we vary the GNN depth, `threads` for using 1 to 32 threads and `gpu` for exploring CPU vs GPU sampling and training.
 As datasets we use three datasets from the [OGB](https://ogb.stanford.edu/) collection, namely `arxiv`, `products` and `papers100M`. In addition, we use two datasets integrated in the [Deep Graph Library](https://www.dgl.ai/), [`Flickr`](https://docs.dgl.ai/generated/dgl.data.FlickrDataset.html) and [`Yelp`](https://docs.dgl.ai/generated/dgl.data.YelpDataset.html). 
 
-All experiments were logged via [Weights & Biases (W&B)](https://wandb.ai/site). The experiment configurations are described in a [spreadsheet](artifacts/GNN Sampling Study Experiment Parameters.xlsx). The logs from W&B are downloaded and can be found in the artifacts/wandb subdirectory.
+All experiments were logged via [Weights & Biases (W&B)](https://wandb.ai/site). The experiment configurations are described in a spreadsheet in the directory `artifacts`. The logs from W&B are downloaded and can be found in the artifacts/wandb subdirectory.
 
 ### Reproducibility
-All experiments can be reproduced by using the parameters given by the [spreadsheet](artifacts/GNN Sampling Study Experiment Parameters.xlsx). In order to log the results, one needs a Weights & Biases account. When first using W&B, you`ll need to authorize your device.
+All experiments can be reproduced by using the parameters given by the spreadsheet in the directory `artifacts`. In order to log the results, one needs a Weights & Biases account. When first using W&B, you`ll need to authorize your device.
 
 #### Preliminaries:
 - You have a W&B account.
