@@ -18,6 +18,17 @@ def train_blocks(model, train_dataloader, opt, sampling, args):
     total_loss = 0
     for it, (input_nodes, output_nodes, blocks) in enumerate(train_dataloader):
         block_table.add_data(sampling, str(blocks))
+        numnodes = 0
+        numedges = 0
+        first = True
+        for block in blocks:
+            if first == True:
+                numnodes += block.number_of_src_nodes()
+                first == False
+            numnodes += block.number_of_dst_nodes()
+            numedges += block.number_of_edges()
+        block_table.add_data(sampling, str(f'Numnodes: {numnodes}, numedges: {numedges}'))
+        
         x = blocks[0].srcdata['feat']
         y = blocks[-1].dstdata['label']
         y_hat = model(blocks, x)
