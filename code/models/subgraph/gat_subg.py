@@ -7,7 +7,6 @@ import tqdm
 
 #https://github.com/dmlc/dgl/blob/master/examples/pytorch/gat/train.py
 
-
 class GAT_subg(nn.Module):
     def __init__(self, in_size, hid_size, out_size, num_layer=2, heads=[8,1]):
         super().__init__()
@@ -85,9 +84,6 @@ class GAT_subg(nn.Module):
                     h = h.mean(1)
                 else:
                     h = h.flatten(1)
-                #if l != len(self.layers) - 1:
-                 #   h = F.relu(h)
-                  #  h = self.dropout(h)
                 # by design, our output nodes are contiguous
                 y[output_nodes[0]:output_nodes[-1] + 1] = h.to(buffer_device)
             feat = y
