@@ -92,6 +92,7 @@ def train(args, device, g, dataset, model, sampling):
 
     start_sampling_time = perf_counter()
     fanout = args.fanout
+    fastladies = args.fastladies
     if sampling in ['neighbor', 'labor', 'shadow', 'ladies', 'fastgcn'] and len(args.fanout) != args.layer:
         if len(args.fanout) == 1:
             fanout = []
@@ -99,6 +100,14 @@ def train(args, device, g, dataset, model, sampling):
                 fanout.append(str(args.fanout[0]))
         else:
             print('Fanout {0} and number of layers {1} do not match.'.format(args.fanout, args.layer))
+            exit()
+    elif sampling in ['fastgcn', 'ladies'] and len(args.fastladies) != args.layer:
+        if len(args.fastladies) == 1:
+            fastladies = []
+            for i in range(args.layer):
+                fastladies.append(str(args.fastladies[0]))
+        else:
+            print(f'Fanout {args.fastladies} and number of layers {args.layer} do not match.')
             exit()
             
     if sampling == 'neighbor':
@@ -116,9 +125,9 @@ def train(args, device, g, dataset, model, sampling):
     elif sampling == 'shadow':
         sampler = ShaDowKHopSampler(fanout, prefetch_node_feats=['feat'])
     elif sampling == 'ladies':
-        sampler = LADIESSampler(g, fanout, prefetch_node_feats=['feat'], prefetch_labels=['label'])
+        sampler = LADIESSampler(g, fastladies, prefetch_node_feats=['feat'], prefetch_labels=['label'])
     elif sampling == 'fastgcn':
-        sampler = FastGCNSampler(g, fanout, prefetch_node_feats=['feat'], prefetch_labels=['label'])
+        sampler = FastGCNSampler(g, fastladies, prefetch_node_feats=['feat'], prefetch_labels=['label'])
     elif sampling == "randomWalk":
         sampler = random_walk(g, [0, 1], length=10)
     elif sampling == 'none':
