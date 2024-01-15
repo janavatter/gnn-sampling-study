@@ -1,5 +1,5 @@
 # Artifacts and Reproducibility
-## Sampling for Graph Neural Networks: Analyzing Performance Across Different Datasets 
+## From Large to Small Graphs: How to Sample in Graph Neural Network Training 
 Currently in submission.
 
 ### Artifacts
