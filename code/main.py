@@ -70,7 +70,7 @@ def train_gnn(args):
 
     start_inference_time = perf_counter()
 
-    acc = layerwise_infer(device, g, new_test_idx, model, batch_size=args.testbatchsize, out_size=out_size)
+    acc, f1 = layerwise_infer(device, g, new_test_idx, model, args.data, batch_size=args.testbatchsize, out_size=out_size)
 
     end_time = perf_counter()
 
@@ -80,7 +80,7 @@ def train_gnn(args):
     system_cpu_times = psutil.cpu_times()
     system_cpu_stats = psutil.cpu_stats()
 
-    wandb.log({'test-acc': acc.item()})
+    wandb.log({'test-acc': acc.item(), 'test-f1': f1.item()})
 
     wandb.log(
         {"end-to-end time": end_time - start_time, "dataloading time": end_dataloading_time - start_dataloading_time,
