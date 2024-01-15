@@ -13,7 +13,9 @@ from dgl.data import YelpDataset
 from dgl.data import RedditDataset
 
 from models.blocks.gcn import GCN
+from models.blocks.gat import GAT
 from models.subgraph.gcn_subg import GCN_subg
+from models.subgraph.gat_subg import GAT_subg
 from train import train
 from layerwise_inference import layerwise_infer
 
@@ -53,14 +55,22 @@ def train_gnn(args):
     out_size = graphdata.num_classes
     hidden_size = args.hidden
     num_layer = args.layer
-
+    
     gnn = {('gcn', 'neighbor'): GCN,
            ('gcn', 'labor'): GCN,
            ('gcn', 'ladies'): GCN,
            ('gcn', 'fastgcn'): GCN,
            ('gcn', 'cluster'): GCN_subg,
            ('gcn', 'saint'): GCN_subg,
-           ('gcn', 'shadow'): GCN_subg}[(args.model, args.sampler)]
+           ('gcn', 'shadow'): GCN_subg,
+           ('gcn', 'none'): GCN,
+           ('gat', 'neighbor'): GAT,
+           ('gat', 'labor'): GAT,
+           ('gat', 'ladies'): GAT,
+           ('gat', 'fastgcn'): GAT,
+           ('gat', 'cluster'): GAT_subg,
+           ('gat', 'saint'): GAT_subg,
+           ('gat', 'shadow'): GAT_subg}[(args.model, args.sampler)]
 
     model = gnn(in_size, hidden_size, out_size, num_layer, heads=[8, 1]).to(device)
 
@@ -94,13 +104,14 @@ if __name__ == '__main__':
     parser.add_argument("--mode", default='mixed', choices=['cpu', 'mixed', 'puregpu'],
                         help="Training mode. 'cpu' for CPU training, 'mixed' for CPU-GPU mixed training, "
                              "'puregpu' for pure-GPU training.")
-    parser.add_argument("--model", default="gcn", )
+    parser.add_argument("--model", default="gcn", choices=["gcn", "gat"])
     parser.add_argument("--data", default="ogbn-products", choices=["ogbn-products", "ogbn-arxiv", "ogbn-papers100M", "ogbn-mag", "cora", "flickr", "yelp", "cora", "reddit"])
     parser.add_argument("--sampler", default="neighbor", choices=["neighbor", "cluster", "saint", "labor",
                                                                   "shadow", "ladies", "fastgcn"])
     parser.add_argument("--fanout", type=int, nargs='+')
     parser.add_argument("--num_parts", default=100, type=int)
     parser.add_argument("--budget", type=int, default=6000)
+    parser.add_argument("--fastladies", type=int, nargs='+')
     parser.add_argument("--epoch", default=10, type=int)
     parser.add_argument("--hidden", default=16, type=int)
     parser.add_argument("--layer", default=2, type=int)
