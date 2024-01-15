@@ -10,6 +10,7 @@ from dgl.data import CoraGraphDataset
 from ogb.nodeproppred import DglNodePropPredDataset
 from dgl.data import FlickrDataset
 from dgl.data import YelpDataset
+from dgl.data import RedditDataset
 
 from models.blocks.gcn import GCN
 from models.subgraph.gcn_subg import GCN_subg
@@ -33,9 +34,13 @@ def train_gnn(args):
     elif args.data == "yelp":
         dgldataset = YelpDataset()
         graphdata = AsNodePredDataset(dgldataset)
-    else:
+    elif args.data == "cora":
         graphdata = CoraGraphDataset()
         graphdata = AsNodePredDataset(graphdata)
+    elif args.data == "reddit":
+        graphdata = RedditDataset()
+        graphdata = AsNodePredDataset(graphdata)
+    
     g = graphdata[0]
     if args.data in ["ogbn-products", "ogbn-arxiv"]:
         g = dgl.add_self_loop(g)
@@ -90,7 +95,7 @@ if __name__ == '__main__':
                         help="Training mode. 'cpu' for CPU training, 'mixed' for CPU-GPU mixed training, "
                              "'puregpu' for pure-GPU training.")
     parser.add_argument("--model", default="gcn", )
-    parser.add_argument("--data", default="ogbn-products", choices=["ogbn-products", "ogbn-arxiv", "ogbn-papers100M", "ogbn-mag", "cora", "flickr", "yelp"])
+    parser.add_argument("--data", default="ogbn-products", choices=["ogbn-products", "ogbn-arxiv", "ogbn-papers100M", "ogbn-mag", "cora", "flickr", "yelp", "cora", "reddit"])
     parser.add_argument("--sampler", default="neighbor", choices=["neighbor", "cluster", "saint", "labor",
                                                                   "shadow", "ladies", "fastgcn"])
     parser.add_argument("--fanout", type=int, nargs='+')
