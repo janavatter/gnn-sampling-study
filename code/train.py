@@ -157,8 +157,8 @@ def train(args, device, g, dataset, model, sampling):
         start_epoch = perf_counter()
         model.train()
         it, total_loss, table = train_func(model, train_dataloader, opt, sampling, args)
-        acc = eval_func(model, g, val_dataloader, out_size, args.data)
-        wandb.log({'accuracy': acc, 'loss': total_loss / (it+1)})
+        acc, f1 = eval_func(model, g, val_dataloader, out_size, args.data)
+        wandb.log({'accuracy': acc, 'f1': f1, 'loss': total_loss / (it+1)})
         end_epoch = perf_counter()
 
         current_epoch_time += (end_epoch-start_epoch)
