@@ -3,7 +3,7 @@
 Currently in submission.
 
 ### Artifacts
-Each experiment is named `sampling-study-` followed by the experiment type and dataset. The options for type are `base` for the sampler-specific experiments, `layers` for the experiments where we vary the GNN depth, `threads` for using 1 to 32 threads and `gpu` for exploring CPU vs GPU sampling and training.
+Each experiment is named `sampling-study-` followed by the experiment type and dataset. The options for type are `base` for the sampler-specific experiments, `layers` for the experiments where we vary the GNN depth, and `gpu` for exploring CPU vs GPU sampling and training.
 As datasets we use three datasets from the [OGB](https://ogb.stanford.edu/) collection, namely `arxiv`, `products` and `papers100M`. In addition, we use four datasets integrated in the [Deep Graph Library](https://www.dgl.ai/), [`Cora`](https://docs.dgl.ai/generated/dgl.data.CoraGraphDataset.html), [`Flickr`](https://docs.dgl.ai/generated/dgl.data.FlickrDataset.html), [`Reddit`](https://docs.dgl.ai/generated/dgl.data.RedditDataset.html), and [`Yelp`](https://docs.dgl.ai/generated/dgl.data.YelpDataset.html). 
 
 All experiments were logged via [Weights & Biases (W&B)](https://wandb.ai/site). The experiment configurations are described in a spreadsheet in the directory `artifacts`. The logs from W&B are downloaded and can be found in the artifacts/wandb subdirectory.
