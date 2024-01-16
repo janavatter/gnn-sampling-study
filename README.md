@@ -9,12 +9,8 @@ As datasets we use three datasets from the [OGB](https://ogb.stanford.edu/) coll
 All experiments were logged via [Weights & Biases (W&B)](https://wandb.ai/site). The experiment configurations are described in a spreadsheet in the directory `artifacts`. The logs from W&B are downloaded and can be found in the artifacts/wandb subdirectory.
 
 ### Reproducibility
-All experiments can be reproduced by using the parameters given by the spreadsheet in the directory `artifacts`. In order to log the results, one needs a Weights & Biases account. When first using W&B, you`ll need to authorize your device.
-
-#### Preliminaries:
-- You have a W&B account.
-- You have installed all requirements given in `requirements.txt`.
-- CUDA is installed for the GPU experiments.
+All experiments can be reproduced by using the parameters given by the spreadsheet in the directory `artifacts`. The requirements are listed in `requirements.txt`. Make sure you log in to WandB via ```wandb login``` before starting to run experiments. 
+In order to log the results, one needs a Weights & Biases account. When first using W&B, you`ll need to authorize your device. For the GPU experiments, CUDA needs to be installed.
 
 ##
 A sample command to run an experiment is:
