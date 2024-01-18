@@ -131,7 +131,7 @@ if __name__ == '__main__':
     config = {"architecture": args.model, "dataset": args.data, "sampler":args.sampler, "mode":args.mode, "epochs":args.epoch, "layer":args.layer, "hidden":args.hidden, "num_parts":args.num_parts, "num_threads":num_threads, "batch_size":args.batchsize, "fanout":args.fanout, "budget":args.budget, "run":args.run}
     wandb.login()
     run_name = args.model + '-' + args.data + '-' + args.sampler + '-' + args.mode + '-' + str(num_threads) + '-' + str(args.epoch) + '-' + str(args.layer) + '-' + str(args.hidden) + '-' + str(args.num_parts) + '-' + str(args.batchsize) + '-' + str(args.fanout) + '-' + str(args.budget)
-    wandb.init(project=args.wandb, entity="jana-vatter", name=run_name, config=config)
+    wandb.init(project=args.wandb, entity="user-name", name=run_name, config=config)
 
     train_gnn(args)
 
