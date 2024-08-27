@@ -1,5 +1,5 @@
 # Artifacts and Reproducibility
-## From Large to Small Graphs: How to Sample in Graph Neural Network Training 
+## From Large to Small: How to Sample in Graph Neural Network Training 
 Currently in submission. 
 
 Please do not hesitate to write us (jana.vatter@tum.de) if you need any help to run or reproduce the results.
